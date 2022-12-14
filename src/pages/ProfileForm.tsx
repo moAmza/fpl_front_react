@@ -10,7 +10,7 @@ import { postSignupData, TOKEN_SESSION_NAME } from "../services/SignServices";
 import { useNavigate } from "react-router-dom";
 import { INPUT_FIELD_CLASS } from "./SignIn";
 import FPLButtomImg from "../images/FPLButtomImg.png";
-import { handleKeyboardEvent, toastShow } from "../utils/GenericFunctions";
+import { handleKeyboardEvent, toastShow } from "../GenericFunctions";
 import SuccessToast, { ErrorToast, WarningToast } from "../components/Toasts";
 import DateField from "../components/profile/DateField";
 import { atom, useSetRecoilState } from "recoil";
@@ -173,7 +173,7 @@ export default function SignUp() {
   const signup = useCallback(async () => {
     console.log(signupData);
     const response = await postSignupData(signupData);
-    if (response._tag === "SUCCESS") {
+    if (response.isSuccessful) {
       localStorage.setItem(EMAIL_SESSION, signupData.email);
       navigate("/authentication");
     } else {
@@ -183,7 +183,7 @@ export default function SignUp() {
       toastShow(setToast, {
         active: true,
         type: "Error",
-        msg: response.message,
+        msg: response.res,
       });
     }
   }, [navigate, signupData]);
@@ -202,7 +202,7 @@ export default function SignUp() {
     country: "",
     birthday: new Date(0),
     username: "",
-    profileImage: "",
+    profileImage: ""
   });
 
   useEffect(() => {
@@ -233,12 +233,12 @@ export default function SignUp() {
 
             <img className="w-1/4 ml-auto mr-4" src={RightLine} alt="" />
           </div>
-          <div className="w-36">
+          <div
+            className="w-36"
+          >
             <img
-              className="rounded-full"
-              src={profileData.profileImage}
-              alt=""
-            />
+            className="rounded-full"
+            src={profileData.profileImage} alt="" />
           </div>
           {fields.map(
             ({

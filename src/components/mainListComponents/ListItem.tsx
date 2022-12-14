@@ -5,7 +5,7 @@ import { PlayerListAtom } from "./MainPlayerList";
 import { playerSelectAtom } from "./../SoccerField";
 import { FieldPlayersAtom } from "../../pages/Transfers";
 import { addPlayer, ErrorMessageAtom } from "../../services/MainListServices";
-import { makeWebName } from "../../utils/UsefullFunctions";
+import { makeWebName } from "../../UsefullFunctions";
 import { toastShow } from "../FieldModal";
 import {
   isSuccessVisibleAtom,

@@ -1,11 +1,6 @@
 import { useQuery } from "react-query";
 import "../index.css";
-import {
-  Eng2Fa,
-  Fa2Eng,
-  getDateString,
-  getOrderedString,
-} from "../utils/UsefullFunctions";
+import { Eng2Fa, Fa2Eng, getDateString, getOrderedString } from "../UsefullFunctions";
 import { getDeadline } from "../services/DateServices";
 
 export default function NarrowDeadlineBar() {

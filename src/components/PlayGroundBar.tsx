@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../index.css";
 import PlayGroundBarSideTab from "./PlayGroundBarSideTab";
-import { Eng2Fa } from "../utils/UsefullFunctions";
+import { Eng2Fa } from "../UsefullFunctions";
 import PToggleTab from "./PageToggleTab";
 import DateBar from "./DateBar";
 import PlayerLogo from "../images/user-octagon.svg";

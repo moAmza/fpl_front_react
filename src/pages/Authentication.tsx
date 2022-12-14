@@ -10,7 +10,7 @@ import { EMAIL_SESSION, imageAtom, Toast } from "./SignUp";
 import { confirmSignup, TOKEN_SESSION_NAME } from "../services/SignServices";
 import { useNavigate } from "react-router-dom";
 import FPLButtomImg from "../images/FPLButtomImg.png";
-import { handleKeyboardEvent, toastShow } from "../utils/GenericFunctions";
+import { handleKeyboardEvent, toastShow } from "../GenericFunctions";
 import SuccessToast, { ErrorToast, WarningToast } from "../components/Toasts";
 import { useRecoilValue } from "recoil";
 
@@ -36,12 +36,12 @@ const fields: Array<RowFieldText> = [
 
 export default function Authentication() {
   const [authCode, setAuthCode] = useState<string>("");
-  const [invalidFields, setInvalidFields] = useState<Array<string>>([]);
+  const [invalidFields, setInvalidFields] = useState< Array<string> >([]);
   const [toast, setToast] = useState<Toast>({
     active: false,
-    type: "none",
-    msg: "",
-  });
+    type: 'none',
+    msg: ''
+  }) 
   const imageData = useRecoilValue(imageAtom);
   const navigate = useNavigate();
 
@@ -59,25 +59,23 @@ export default function Authentication() {
   console.log(authCode);
 
   const verifyNnavigate = useCallback(async () => {
-    const response = await confirmSignup(
-      {
-        email: localStorage.getItem(EMAIL_SESSION),
-        code: parseInt(authCode),
-      },
-      imageData
-    );
-    if (response.isSuccessful) {
-      navigate("/myteam");
-    } else {
-      const errors = response.errorType.split(" ");
-      setInvalidFields(errors);
-      console.log(response.res);
-      // toast the error
-      toastShow(setToast, {
-        active: true,
-        type: "Error",
-        msg: response.res,
-      });
+    const response = await confirmSignup({
+      email: localStorage.getItem(EMAIL_SESSION),
+      code: parseInt(authCode),
+    }, imageData);
+    if(response.isSuccessful) {
+        navigate("/myteam");
+    }
+    else{
+        const errors = response.errorType.split(' ');
+        setInvalidFields(errors);
+        console.log(response.res);
+        // toast the error
+        toastShow(setToast, {
+            active: true,
+            type: 'Error',
+            msg: response.res
+        })
     }
   }, [authCode]);
 

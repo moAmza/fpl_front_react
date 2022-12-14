@@ -21,7 +21,7 @@ interface ProfileDataI {
 }
 
 export interface ProfileData extends Omit<ProfileDataI, "birthday"> {
-  birthday: Date;
+  birthday: Date
 }
 
 const USER_ID_PATH = "/user";
@@ -33,8 +33,8 @@ export const getProfileData = async () => {
   try {
     const response = await http.get(`${USER_ID_PATH}/${userId}`, {
       headers: {
-        Authorization: `Abdol ${localStorage.getItem(TOKEN_SESSION_NAME)}`,
-      },
+        Authorization: `Abdol ${localStorage.getItem(TOKEN_SESSION_NAME)}`
+      }
     });
     const profileData: ProfileDataI = response.data.user;
     console.log("profileData: ", profileData);

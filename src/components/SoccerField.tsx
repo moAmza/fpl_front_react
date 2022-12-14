@@ -4,7 +4,7 @@ import SoccerFieldImg from "./../images/SoccerField.png";
 import DefaultPlayer from "./DefaultPlayer";
 import SelectedPlayers from "./SelectedPlayer";
 import onselectShirt from "./../images/onselect_shirt.png";
-import { makeWebName } from "../utils/UsefullFunctions";
+import { makeWebName } from "../UsefullFunctions";
 import { FieldPlayersAtom } from "../pages/Transfers";
 import { getTeamPlayers } from "../services/TeamPlayerServices";
 import { useNavigate } from "react-router-dom";

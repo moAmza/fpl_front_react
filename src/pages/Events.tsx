@@ -78,60 +78,60 @@ export default function Events() {
 
   return (
     <>
-      <div className="flex flex-col space-y-6 px-2 lg:px-40 py-10 w-full items-center ">
-        <div className="flex flex-col w-[90%] md:w-1/2 shadow-lg space-y-2 relative">
-          <SearchBox whatToSearch="users" />
-          <div
-            className={`flex flex-col shadow-lg px-2 absolute w-full pb-2 z-50 bg-white top-11 rounded-b-lg overflow-auto ${
-              resultedUsers.length > MAX_SHOW_SEARCHED_USERS ? "h-[13rem]" : ""
-            } ${resultedUsers.length === 0 ? "hidden" : ""}`}
-          >
-            {resultedUsers.map((resultedUser) => (
-              <FollowItem user={resultedUser} />
-            ))}
-          </div>
-        </div>
-        <h2 className="hidden lg:flex ml-auto font-black text-2xl text-[#3D195B]">
-          آخرین رویدادها
-        </h2>
-        <EventTab />
-        <div className="flex lg:w-[95%] flex-col-reverse lg:flex-row lg:justify-between lg:space-x-6 lg:h-full lg:min-h-max">
-          <div className="hidden lg:flex list mx-auto max-w-max min-w-fit flex-col  ml-auto rounded-2xl shadow-md mb-2 overflow-auto lg:h-full lg:min-h-max">
-            <ListHeader text="دوستان شما" />
-            <div className="w-full flex flex-col pt-6 pb-1 px-8 h-full ">
-              <FollowButtons />
-              <SearchBox whatToSearch="followList" />
-
-              <div className="w-full py-2">
-                {data.map((user: EventUser) => {
-                  return <FollowItem user={user} />;
-                })}
-              </div>
-
-              <MainListPagination disabled={false} />
-            </div>
-          </div>
-          {(eventTabToggle === 2 || 3) && (
-            <div className="w-full min-w-[475px] flex flex-col pt-6 pb-1 px-8 h-full  lg:hidden">
-              <SearchBox whatToSearch="followList" />
-
-              <div className="w-full py-2">
-                {/* <FollowItem user={fake_user} /> */}
-              </div>
-            </div>
-          )}
-
-          {(eventTabToggle === 1 || breakpoint > 1024) && (
-            <div className="w-full flex flex-col items-end space-y-4">
-              <EventItem />
-              <EventItem />
-              <EventItem />
-              <EventItem />
-            </div>
-          )}
+    <div className="flex flex-col space-y-6 px-2 lg:px-40 py-10 w-full items-center ">
+      <div className="flex flex-col w-[90%] md:w-1/2 shadow-lg space-y-2 relative">
+        <SearchBox whatToSearch="users" />
+        <div
+          className={`flex flex-col shadow-lg px-2 absolute w-full pb-2 z-50 bg-white top-11 rounded-b-lg overflow-auto ${
+            resultedUsers.length > MAX_SHOW_SEARCHED_USERS ? "h-[13rem]" : ""
+          } ${resultedUsers.length === 0 ? "hidden" : ""}`}
+        >
+          {resultedUsers.map((resultedUser) => (
+            <FollowItem user={resultedUser} />
+          ))}
         </div>
       </div>
-      <FollowModal />
+      <h2 className="hidden lg:flex ml-auto font-black text-2xl text-[#3D195B]">
+        آخرین رویدادها
+      </h2>
+      <EventTab />
+      <div className="flex lg:w-[95%] flex-col-reverse lg:flex-row lg:justify-between lg:space-x-6 lg:h-full lg:min-h-max">
+        <div className="hidden lg:flex list mx-auto max-w-max min-w-fit flex-col  ml-auto rounded-2xl shadow-md mb-2 overflow-auto lg:h-full lg:min-h-max">
+          <ListHeader text="دوستان شما" />
+          <div className="w-full flex flex-col pt-6 pb-1 px-8 h-full ">
+            <FollowButtons />
+            <SearchBox whatToSearch="followList" />
+
+            <div className="w-full py-2">
+              {data.map((user: EventUser) => {
+                return <FollowItem user={user} />;
+              })}
+            </div>
+
+            <MainListPagination disabled={false} />
+          </div>
+        </div>
+        {(eventTabToggle === 2 || 3) && (
+          <div className="w-full min-w-[475px] flex flex-col pt-6 pb-1 px-8 h-full  lg:hidden">
+            <SearchBox whatToSearch="followList" />
+
+            <div className="w-full py-2">
+              {/* <FollowItem user={fake_user} /> */}
+            </div>
+          </div>
+        )}
+
+        {(eventTabToggle === 1 || breakpoint > 1024) && (
+          <div className="w-full flex flex-col items-end space-y-4">
+            <EventItem />
+            <EventItem />
+            <EventItem />
+            <EventItem />
+          </div>
+        )}
+      </div>
+    </div>
+    <FollowModal />
     </>
   );
 }

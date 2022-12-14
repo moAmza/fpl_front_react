@@ -1,4 +1,5 @@
-import http, { handleResponse, validate } from "./http";
+import http from "./http";
+import { EMAIL_SESSION } from "../pages/SignUp";
 import axios, { AxiosError } from "axios";
 import {
   ErrorData,
@@ -7,18 +8,15 @@ import {
   ServiceSuccess,
   ServiceSuccessInterface,
 } from "./Services";
-import { z } from "zod";
-import { ErrorType } from "./dtos/errorDto";
 
 const USER_PREFIX = "/auth/";
 const SIGNUP_URL = USER_PREFIX + "signup";
 const LOGIN_URL = USER_PREFIX + "login";
 export const TOKEN_SESSION_NAME = "footballFantasyToken";
-export const EMAIL_SESSION = "FPLEmail";
 export const IMAGE_URL = "user/image";
 const CONFIRM_URL = USER_PREFIX + "confirmation";
 
-interface InRegisterType {
+interface SignupData {
   firstname: string;
   lastname: string;
   email: string;
@@ -27,8 +25,6 @@ interface InRegisterType {
   password: string;
   birthday: Date;
 }
-
-type OutRegisterType = { code: string; count: number };
 
 interface LoginData {
   username: string;
@@ -40,18 +36,26 @@ interface ConfirmData {
   email: string | null;
 }
 
-type Data<A> = { _tag: "SUCCESS" } & A;
-
 export const postSignupData = async (
-  signupData: InRegisterType
-): Promise<ErrorType | Data<OutRegisterType>> => {
-  return handleResponse(
-    await http.post(SIGNUP_URL, signupData),
-    validate({
-      code: z.string(),
-      count: z.number(),
-    })
-  );
+  signupData: SignupData
+): Promise<ServiceSuccessInterface<string> | ServiceErrorInterface> => {
+  try {
+    const response = await http.post(SIGNUP_URL, signupData);
+    console.log("signupTest: ", response);
+    const res = ServiceSuccess<string>(response.data);
+    return res;
+  } catch (err) {
+    const DEFAULT_ERROR = "unknown";
+    console.log(err);
+    if (axios.isAxiosError(err)) {
+      const data = err.response?.data as ErrorData;
+      console.log(data);
+      const res = ServiceError("password username firstname", data.message);
+      return res;
+    } else {
+      return ServiceError(DEFAULT_ERROR, "یه اروری داداچ");
+    }
+  }
 };
 
 export const postLoginData: (

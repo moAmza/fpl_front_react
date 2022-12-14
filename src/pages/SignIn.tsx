@@ -9,7 +9,7 @@ import React, { KeyboardEvent, useEffect, useState } from "react";
 import { postLoginData, TOKEN_SESSION_NAME } from "../services/SignServices";
 import { useNavigate } from "react-router-dom";
 import FPLButtomImg from "../images/FPLButtomImg.png";
-import { handleKeyboardEvent, toastShow } from "../utils/GenericFunctions";
+import { handleKeyboardEvent, toastShow } from "../GenericFunctions";
 import { Toast } from "./SignUp";
 import SuccessToast, { ErrorToast, WarningToast } from "../components/Toasts";
 
@@ -53,14 +53,14 @@ export default function SignIn() {
   });
   console.log(signinData);
 
-  const [invalidFields, setInvalidFields] = useState<Array<string>>([]);
+  const [invalidFields, setInvalidFields] = useState< Array<string> >([]);
   console.log("invalidFields", invalidFields);
 
   const [toast, setToast] = useState<Toast>({
     active: false,
-    type: "none",
-    msg: "",
-  });
+    type: 'none',
+    msg: ''
+  })
 
   const handleChange = (
     event:
@@ -75,23 +75,23 @@ export default function SignIn() {
 
   const signin = async () => {
     const response = await postLoginData(signinData);
-    if (response.isSuccessful) {
+    if(response.isSuccessful){
       if (localStorage.getItem(TOKEN_SESSION_NAME)) navigate("/myteam");
-    } else {
+    }
+    else{
       const errors = response.errorType;
-      setInvalidFields(errors.split(" "));
+      setInvalidFields(errors.split(' '));
       toastShow(setToast, {
         active: true,
-        type: "Error",
-        msg: response.res,
-      });
+        type: 'Error',
+        msg: response.res
+      })
     }
   };
 
   return (
-    <div
-      className="flex flex-col h-screen bg-[#3D185B] overflow-auto justify-start"
-      onKeyDown={handleKeyboardEvent<HTMLDivElement>("Enter", signin)}
+    <div className="flex flex-col h-screen bg-[#3D185B] overflow-auto justify-start"
+        onKeyDown={handleKeyboardEvent<HTMLDivElement>('Enter', signin)}
     >
       <div className="flex flex-col w-full h-full lg:flex-row">
         <div className="sideImg w-full relative hidden lg:block">

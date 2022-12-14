@@ -6,7 +6,7 @@ import { useQueryClient } from "react-query";
 import { useSetRecoilState } from "recoil";
 import { resultedUsersAtom } from "../mainListComponents/SearchBox";
 import { eventModalAtom } from "./FollowModal";
-import { getImageSource } from "../../utils/UsefullFunctions";
+import { getImageSource } from "../../UsefullFunctions";
 
 export default function FollowItem({ user }: { user: EventUser }) {
   const queryClient = useQueryClient();

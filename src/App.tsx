@@ -1,13 +1,16 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React from "react";
 import { RecoilRoot } from "recoil";
-import "./App.css";
-import PageHeader from "./components/PageHeader";
-import Authentication from "./pages/Authentication";
-import Events from "./pages/Events";
-import Home from "./pages/Home";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Transfers from "./pages/Transfers";
+import Home from "./pages/Home";
+import "./App.css";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
+import Authentication from "./pages/Authentication";
+import PageHeader from "./components/PageHeader";
+import Events from "./pages/Events";
+import FollowModal from "./components/eventsComponents/FollowModal";
+import SoccerField from "./components/transfer/SoccerField";
 import ProfileForm from "./pages/ProfileForm";
 
 function App() {

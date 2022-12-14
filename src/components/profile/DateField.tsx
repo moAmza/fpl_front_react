@@ -1,7 +1,7 @@
 import moment from "jalali-moment";
 import { useState } from "react";
 import { DatePicker } from "react-advance-jalaali-datepicker";
-import { Eng2Fa } from "../../utils/UsefullFunctions";
+import { Eng2Fa } from "../../UsefullFunctions";
 
 const DateInput = (props: any) => {
   return (

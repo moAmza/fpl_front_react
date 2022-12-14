@@ -11,7 +11,7 @@ import { postSignupData, TOKEN_SESSION_NAME } from "../services/SignServices";
 import { useNavigate } from "react-router-dom";
 import { INPUT_FIELD_CLASS } from "./SignIn";
 import FPLButtomImg from "../images/FPLButtomImg.png";
-import { handleKeyboardEvent, toastShow } from "../utils/GenericFunctions";
+import { handleKeyboardEvent, toastShow } from "../GenericFunctions";
 import SuccessToast, { ErrorToast, WarningToast } from "../components/Toasts";
 import DateField from "../components/SignComponents/DateField";
 import { atom, useSetRecoilState } from "recoil";
@@ -94,9 +94,9 @@ export interface Toast {
 }
 
 export const imageAtom = atom({
-  key: "image-atom",
-  default: new File([""], "dummy"),
-});
+  key: 'image-atom',
+  default: new File([''], 'dummy')
+})
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -142,14 +142,12 @@ export default function SignUp() {
       case "file":
         return (event: React.ChangeEvent<HTMLInputElement>) => {
           const newVal =
-            event.target.files === null
-              ? new File([""], "dummy")
-              : event.target.files[0];
-          console.log("files", typeof event.target.files);
-          console.log("val", newVal);
+            event.target.files === null ? new File([''], 'dummy') : event.target.files[0];
+          console.log('files', typeof event.target.files);
+          console.log('val', newVal);
 
           setImageData(() => newVal);
-
+          
           setSignupData((oldState) => ({
             ...oldState,
             [event.target.name]: newVal,
@@ -172,9 +170,9 @@ export default function SignUp() {
 
   const signup = useCallback(async () => {
     console.log(signupData);
-    const { profileImage: _, ...data } = signupData;
+    const {profileImage: _, ...data} = signupData;
     const response = await postSignupData(data);
-    if (response._tag === "SUCCESS") {
+    if (response.isSuccessful) {
       localStorage.setItem(EMAIL_SESSION, signupData.email);
       navigate("/authentication");
     } else {
@@ -184,7 +182,7 @@ export default function SignUp() {
       toastShow(setToast, {
         active: true,
         type: "Error",
-        msg: response.message,
+        msg: response.res,
       });
     }
   }, [navigate, signupData]);
@@ -251,10 +249,7 @@ export default function SignUp() {
                       }
                     />
                   ) : firstType === "date" ? (
-                    <DateField
-                      setDate={handleDateFor(firstName)}
-                      label={first}
-                    />
+                    <DateField setDate={handleDateFor(firstName)} label={first} />
                   ) : (
                     <InputField
                       label={first}
@@ -282,10 +277,7 @@ export default function SignUp() {
                       }
                     />
                   ) : secondType === "date" ? (
-                    <DateField
-                      setDate={handleDateFor(secondName)}
-                      label={second}
-                    />
+                    <DateField setDate={handleDateFor(secondName)} label={second} />
                   ) : (
                     <InputField
                       label={second}

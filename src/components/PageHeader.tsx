@@ -1,9 +1,10 @@
+import React from "react";
 import headerBg from "./../images/headerBg.svg";
 import fplLogo from "./../images/fplLogo.svg";
 import players from "./../images/players.png";
 import bgLayer from "./../images/bgLayer.png";
-import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
+import { Outlet } from "react-router-dom";
 
 export default function PageHeader() {
   return (
@@ -33,7 +34,6 @@ export default function PageHeader() {
             <img src={fplLogo} alt="FPL logo" className="h-1/3" />
           </div>
         </div>
-
         <Navbar />
       </div>
       <Outlet />

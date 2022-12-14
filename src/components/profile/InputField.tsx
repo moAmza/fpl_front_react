@@ -11,7 +11,7 @@ interface FieldProps {
   isOnlyText?: boolean;
   type: string;
   initVal?: string;
-  disable?: boolean
+  disable?: boolean;
 }
 
 export default function InputField({
@@ -44,7 +44,7 @@ export default function InputField({
           type={type}
           placeholder={placeholder}
           name={name}
-          value={initVal ?? ''}
+          value={initVal ?? ""}
           disabled={disable}
         />
       </div>
