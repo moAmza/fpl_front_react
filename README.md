@@ -1,8 +1,10 @@
-# Football fantasy premier league frontend project developed using React
+# FPL frontend - React
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 </br>
 You can use [fpl_backend_nest](https://github.com/moAmza/fpl_backend_nest) or [fpl_backend_express](https://github.com/moAmza/fpl_backend_express) as the backend server and run the application.
+
+<p align="center">
 </br></br></br>
 
 ## Running the app
